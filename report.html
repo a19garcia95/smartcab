@@ -11915,9 +11915,9 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>In the agent.py, the 3 flags where enforce deadline, learning, and n test because of the way the agent needs to act. The enforce deadline is obviously the enforcer, the learning is to make sure that the agent is actually learning and becoming smarter on decision making, and finally the n test is an adjuction, basically measuring how many times it takes to train.</p>
+<p>In the agent.py, the 3 flags where enforce deadline, learning, and n test because of the way the agent needs to act. The enforce deadline is obviously the enforcer, the learning is to make sure that the agent is actually learning and becoming smarter on decision making, and finally the n test is an adjuction, basically measuring how many times it takes to train. If the enforce deadline is set to True, it will output more verbose text. The ntests determine how many trials used for testing.</p>
 <p>In the environment.py the act function is used to tell the agent to act</p>
-<p>In the simulator.py, the render text generates data</p>
+<p>In the simulator.py, the render() function is used to spit out the text (environment data)</p>
 <p>In the planner.py, the next waypoint indicates the compass direction from E-W</p>
 
 </div>
@@ -13137,7 +13137,7 @@ ZlXy/8C83OIF8TuXAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>For the most part, what affects the agent the most is the waypoint feature because it directly affects the learning rate of the agent. If the agent is not learning, its not improving. Also the deadline feature take the reliance accountable.</p>
+<p>For the most part, what affects the agent the most is the waypoint feature because it directly affects the learning rate of the agent. If the agent is not learning, its not improving. Also the deadline feature take the reliance accountable. Additionally, two factors are very important to explain, such as waypoint and oncoming. These two factors play a huge role because the agent doesnt have unlimited time to reach from point A to point B. The other important feature is deadline because its an independent feature. The relevant features would be waypoint, oncoming, and light</p>
 
 </div>
 </div>
@@ -13168,7 +13168,7 @@ ZlXy/8C83OIF8TuXAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>The state space size is 384 and the agent has a policy learning algorithm which minimzes the space state over time.</p>
+<p>The state space size is 384 and the agent has a policy learning algorithm which minimzes the space state over time. The waypoint feature has only three parameters to choose from, which are forward, left, and right. The oncoming feature is the same but it has an extra parameter which is none, meaning still. Out of all the possible 24 combinations, we can conclude that it is not a requirement for all the states to be visited with a high number of training trials.</p>
 
 </div>
 </div>
@@ -16311,7 +16311,7 @@ lpmZmZmZWZ04wDIzMzMzM6sTB1hmZmZmZmZ18v8BZH7G4Ihvc8cAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>The decaying function is epsilon = e^(-at). The training trials were 520. The tolerance was set to 0.005 and the alpha was set to 0.3. The improvements we could say went from a 5/10 to a 9.3/10. The Q-Learner does in fact succesfuly learn the policy. Although it is not perfect it does deserve an A grade, maybe not an A+.</p>
+<p>The decaying function is epsilon = e^(-at). The training trials were 520. The tolerance was set to 0.005 and the alpha was set to 0.3. The improvements we could say went from a 5/10 to a 9.3/10. The results were obtained by testing over and over again. The conclusion to obtaining the results came from manipulating epsilon. Epsilon and learning rate have an inverse relationship. However, in this experiment I did not aim for the extreme values (low or high), I used an alpha of 0.3 which I consider to be just right based on trial and error. The improvement of this Q-Learner is much more significant than the first one, particularly in not getting into accidents. Overall, the Q-Learner does in fact succesfuly learn the policy. Although it is not perfect it does deserve an A grade, maybe not an A+.</p>
 
 </div>
 </div>
@@ -16350,7 +16350,11 @@ lpmZmZmZWZ04wDIzMzMzM6sTB1hmZmZmZmZ18v8BZH7G4Ihvc8cAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>The optimal policy can be summareized into the actions of a green light and red light, if its a green light the agent needs to move to the left, continue forward, or move to the right. When the light is red, the agent has to remain still. In the sim improved learning file you have numerous right and wrong policies. An example of a good policy would be parameters left, green, right, none, and none which represents an agent with a green light and actions to follow. In this case the agent moves to the right. On the other hand a wrong policy would have the same input parameters and the agent not moving to the right, or maybe performing an unessary task.</p>
+<p>The optimal policy can be summareized into the actions of a green light and red light, if its a green light the agent needs to move to the left, continue forward, or move to the right. When the light is red, the agent has to remain still. In the sim improved learning file you have numerous right and wrong policies. An example of a good policy would be parameters left, green, right, none, and none which represents an agent with a green light and actions to follow. In this case the agent moves to the right. On the other hand a wrong policy would have the same input parameters and the agent not moving to the right, or maybe performing an unessary task. In addition, each state is recorded for the policy to be enforced. The following four examples provide details of how the Q-Learner managed to learn the policy. The examples show how the agent turns to the right to achieve the optimal policy. (Note: other examples, the optimal policy would state other directions, such as left or none)</p>
+<p>('right', 'red', 'left', None) -- None : 0.33 -- forward : -3.80 -- right : 1.20 -- left : -5.61</p>
+<p>('right', 'green', 'right', 'right') -- None : 0.00 -- forward : 0.00 -- right : 0.83 -- left : 0.00</p>
+<p>('forward', 'green', 'right', None) -- None : 0.00 -- forward : 0.87 -- right : 0.31 -- left : -11.15</p>
+<p>('left', 'red', None, 'left') -- None : 0.00 -- forward : -5.73 -- right : 0.62 -- left : -5.71</p>
 
 </div>
 </div>
